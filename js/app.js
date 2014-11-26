@@ -89,7 +89,6 @@
     }
 
 
-
     function startPreloader(images) {
       var timer;
       var images = Array.prototype.slice.call(images);

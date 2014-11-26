@@ -8,20 +8,39 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   </head>
+
+  <script type="text/html">
+    <div class="col-md-6">
+      <div class="media-box light-shadow" data-index="0">
+        <img src="images/rats.jpg"/>
+        <div class="col-md-12">
+          <div class="row grid-spacing">
+            <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">RATings</h4>
+             <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
+           </div>
+         </div>
+        <div class="clearfix"></div>
+        <p class="purple">Fear based San Francisco restaurant review website.</p>
+      </div>
+    </div>
+  </script>
+
   <body class="yellow-bg">
     <div class="container-fluid">
       <div class="row">
         <header class="col-md-2">
           <div id="header-wrapper">
             <div class="row">
-              <h1 class="sans col-md-6"><small><strong>ADAM BIAGIANTI</strong></small></h1>
-              <p class="mute col-md-11 no-margin">front-end</p>
-              <p class="mute col-md-11">web developer</p>
+              <h1 class="sans col-md-6"><strong>ADAM BIAGIANTI</strong></h1>
+              <h5 class="sans col-md-11">front-end web developer</h5>
             </div>
 
             <div id="header-links">
-              <p class="mute">on github: <a class="mute" href="https://github.com/el-mapache"><strong>el-mapache</strong></a></p>
-              <p class="mute">resume: <a class="mute" href="adam_b_resume.pdf" download="resume.pdf"><strong>download pdf</strong></a></p>
+              <p class="mute">on github:
+                <a class="mute" href="https://github.com/el-mapache">
+                  <strong>el-mapache</strong>
+                </a>
+              </p>
             </div>
           </div>
         </header>
@@ -124,26 +143,24 @@
 
         <section id="project-detail-view" class="col-md-4 hide-ani">
           <div id="project-metadata-wrapper" class="col-md-offset-1 mute">
-            <button type="button" id="prev-btn" class="btn btn-default btn-xs btn-nav">
+            <button type="button" id="prev-btn" class="btn-nav">
               <span class="glyphicon glyphicon-chevron-left"></span>
             </button>
 
-            <button type="button" id="close-btn" class="btn btn-default btn-xs btn-nav">
+            <button type="button" id="close-btn" class="btn-nav">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
 
-            <button type="button" id="next-btn" class="btn btn-default btn-xs btn-nav">
+            <button type="button" id="next-btn" class="btn-nav">
               <span class="glyphicon glyphicon-chevron-right"></span>
             </button>
 
             <div id="project-metadata">
-              <h1 class="sans black"><small><strong id="project-title"></strong></small></h1>
-              <div class="grid-spacing">
-                <h5 class="sans">
-                  <strong>Backend: </strong><span id="project-backend"></span>
-                  <br>
-                  <strong>Front-End: </strong><span id="project-front-end"></span>
-                </h5>
+              <h2 class="sans black"><strong id="project-title"></strong></h2>
+              <h5 class="sans">
+                <small class="upper">w/ </small><span id="project-backend"></span>, <span id="project-front-end"></span>
+              </h5>
+                <div class="grid-spacing">
                 <p class="grid-spacing">
                   <a href="#" target="_blank" id="project-link">view project</a>
                   <br>
@@ -163,6 +180,7 @@
 
       </div>
     </div>
-   <script src="js/app.min.js"></script>
+    <script src="js/dot.min.js"></script>
+    <script src="js/app.min.js"></script>
   </body>
 </html>
