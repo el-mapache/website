@@ -238,7 +238,9 @@
 
       var elem = this.el.querySelector(selector);
 
-      if (typeof elem === 'undefined') return;
+      if (typeof elem === 'undefined') {
+        return;
+      }
 
       elem.addEventListener(evnt, function(evt) {
         fn.call(self, evt);
@@ -260,27 +262,36 @@
 
     open: function() {
       if (this.closed) {
-        this.el.className = this.el.className += " show";
+        this.el.className = this.el.className.replace(' hide-animation', '');
+        this.el.className = this.el.className += ' show-animation';
+
         this.closed = false;
       }
     },
 
     close: function() {
-      if (this.closed) return;
+      if (this.closed) {
+        return;
+      }
+      this.el.className = this.el.className.replace(' show-animation', '');
+      this.el.className = this.el.className += ' hide-animation';
 
-      this.el.className = this.el.className.replace(" show", "");
       this.closed = true;
     },
 
     next: function() {
-      if (!this.model) return;
+      if (!this.model) {
+        return;
+      }
 
       this.model = projectsService.get(this.model.id + 1);
       this.render();
     },
 
     prev: function() {
-      if (!this.model) return;
+      if (!this.model) {
+        return;
+      }
 
       this.model = projectsService.get(this.model.id - 1);
       this.render();
@@ -304,7 +315,7 @@
     function getProjectById(evt) {
       var index = +this.getAttribute('data-index');
       sidebar.update(projectsService.get(index));
-      sidebar.open();
+      sidebar.toggle();
     }
 
     var mediaBox = document.querySelectorAll('.media-box');

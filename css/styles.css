@@ -68,9 +68,13 @@ a:hover {
   background: white;
   z-index: 0;
   overflow-y: scroll;
+  display: block;
   box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -moz-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -webkit-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 #header-links, #main-list-wrapper {
@@ -89,16 +93,14 @@ a:hover {
   margin-top: 40px;
 }
 
-.hide-ani {
-  -webkit-transition: opacity 0.09s ease-in-out;
-  -moz-transition: opacity 0.09s ease-in-out;
-  transition: opacity 0.09s ease-in-out;
+.hide-animation {
   opacity: 0;
+  visibility: hidden;
 }
 
-.show {
+.show-animation {
   opacity: 1;
-  z-index: 100 !important;
+  z-index: 10000 !important;
 }
 
 .hide-image {
@@ -210,11 +212,6 @@ a:hover {
   margin-bottom: 20px;
 }
 
-
-.muted {
-  color: #555;
-}
-
 .thumb {
   width: 200px;
   border-bottom: 1px solid black;
@@ -227,6 +224,7 @@ a:hover {
 .border-bottom-black {
   border-bottom: 1px solid #2E2828;
 }
+
 .mute {
   color: #575757;
 }
@@ -248,11 +246,7 @@ a:hover {
   transition: all 0.35s ease;
 }
 
-#prev-btn span {
-  top: 2px;
-  right: 1px;
-}
-
+#prev-btn span,
 #next-btn span {
   top: 2px;
   right: 1px;
