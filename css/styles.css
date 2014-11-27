@@ -33,6 +33,7 @@ hr {
 }
 
 img {
+  vertical-align: middle;
   width: 100%;
 }
 
@@ -49,8 +50,14 @@ a:focus, button:focus {
   outline: none !important;
 }
 
-a:hover {
-  color: #333;
+.link {
+  -webkit-transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #FF500B;
 }
 
 .upper {
@@ -72,9 +79,9 @@ a:hover {
   box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -moz-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -webkit-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
-  -webkit-transition: all 0.1s ease-in-out;
-  -moz-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.05s ease-in-out;
+  -moz-transition: all 0.05s ease-in-out;
+  transition: all 0.05s ease-in-out;
 }
 
 #header-links, #main-list-wrapper {
@@ -117,12 +124,6 @@ a:hover {
 .media-box a:hover {
   color: #B3B0B6;
   -webkit-transition: all 0.15s ease-in-out;
-}
-
-.media-box img {
-  border-radius: 2px 2px;
-  -moz-border-radius: 2px 2px;
-  -webkit-border-radius: 2px 2px;
 }
 
 .alpha {
@@ -182,6 +183,11 @@ a:hover {
   margin-bottom: 20px;
 }
 
+.spacing {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .media-box {
   padding-bottom: 5px;
   border-bottom: 1px solid #B0A8B8;
@@ -189,11 +195,15 @@ a:hover {
 }
 
 .media-box img {
+  border-radius: 2px 2px;
+  -moz-border-radius: 2px 2px;
+  -webkit-border-radius: 2px 2px;
   border-bottom: 4px solid #B0A8B8;
-}
-
-.media-box:hover {
   cursor: pointer;
+
+  -webkit-transition: border-color 0.2s ease;
+  -moz-transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .media-box:hover img {
@@ -212,17 +222,8 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.thumb {
-  width: 200px;
-  border-bottom: 1px solid black;
-}
-
 .center {
   margin: 0 auto;
-}
-
-.border-bottom-black {
-  border-bottom: 1px solid #2E2828;
 }
 
 .mute {
@@ -271,7 +272,6 @@ a:hover {
   text-align: right;
 }
 
-
 @media only screen and (max-width: 1024px) {
   #header-wrapper {
     position: relative;
@@ -305,13 +305,13 @@ a:hover {
   }
 
   h5 {
-    font-size: 4vh;
+    font-size: 3.5vh;
   }
 }
 
 @media only screen and (max-width: 480px) {
   h1 {
-    font-size: 9vh;
+    font-size: 8vh;
   }
 
   img {

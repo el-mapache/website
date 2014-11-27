@@ -221,7 +221,6 @@
   function SideBarView(elem) {
     this.el = elem;
 
-
     this.bindEvent('#close-btn', 'click', this.toggle);
     this.bindEvent('#next-btn', 'click', this.next);
     this.bindEvent('#prev-btn', 'click', this.prev);
@@ -249,11 +248,24 @@
 
     render: function() {
       this.el.querySelector('#project-title').innerHTML = this.model.name;
-      this.el.querySelector('#project-backend').innerHTML = this.model.backend;
-      this.el.querySelector('#project-front-end').innerHTML = this.model.frontend;
+      this.el.querySelector('#tech').innerHTML = this.model.tech;
       this.el.querySelector('#project-description').innerHTML = this.model.description;
       this.el.querySelector('#project-link').href = this.model.uri;
       this.el.querySelector('#project-repo-link').href = this.model.repo;
+    },
+
+    _onEscKeyPress: function(event) {
+      if (event.keyCode === 27) {
+        this.close();
+      }
+    },
+
+    bindShortcuts: function() {
+      document.addEventListener('keydown', this._onEscKeyPress.bind(this));
+    },
+
+    unbindShortcuts: function() {
+      document.removeEventListener('keydown', this._onEscKeyPress)
     },
 
     toggle: function() {
@@ -266,6 +278,7 @@
         this.el.className = this.el.className += ' show-animation';
 
         this.closed = false;
+        this.bindShortcuts();
       }
     },
 
@@ -277,6 +290,7 @@
       this.el.className = this.el.className += ' hide-animation';
 
       this.closed = true;
+      this.unbindShortcuts();
     },
 
     next: function() {
@@ -315,7 +329,7 @@
     function getProjectById(evt) {
       var index = +this.getAttribute('data-index');
       sidebar.update(projectsService.get(index));
-      sidebar.toggle();
+      sidebar.open();
     }
 
     var mediaBox = document.querySelectorAll('.media-box');
@@ -329,7 +343,7 @@
   /**
     * Resizing stuff
   **/
- var trackDocumentHeight = function(node) {
+  var trackDocumentHeight = function(node) {
     node.style.height = document.documentElement.clientHeight + "px";
   }
 
@@ -362,7 +376,7 @@
     addHandler: function(type, handler) {
       this.handlers[type] = this.handlers[type] || [];
 
-      var args = Array.prototype.slice.call(arguments, 2);
+      var args = [].slice.call(arguments, 2);
 
       var wrapped = (function(args, fn) {
         return function() {
