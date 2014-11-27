@@ -111,9 +111,9 @@ a:focus, button:focus {
 }
 
 .hide-image {
-  -webkit-transition: opacity 0.25s ease;
-  -moz-transition: opacity 0.25s ease;
-  transition: opacity 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   opacity: 0
 }
 
@@ -201,9 +201,9 @@ a:focus, button:focus {
   border-bottom: 4px solid #B0A8B8;
   cursor: pointer;
 
-  -webkit-transition: border-color 0.2s ease;
-  -moz-transition: border-color 0.2s ease;
-  transition: border-color 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .media-box:hover img {
