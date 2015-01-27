@@ -252,9 +252,11 @@
       this.el.querySelector('#project-description').innerHTML = this.model.description;
       if (this.model.uri) {
         this.el.querySelector('#project-link').style.display = 'initial';
+        this.el.querySelector('#project-repo-link').style.marginLeft = '';
         this.el.querySelector('#project-link').href = this.model.uri;
       } else {
         this.el.querySelector('#project-link').style.display = 'none';
+        this.el.querySelector('#project-repo-link').style.marginLeft = '0px';
       }
       this.el.querySelector('#project-repo-link').href = this.model.repo;
     },
