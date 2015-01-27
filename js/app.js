@@ -250,7 +250,12 @@
       this.el.querySelector('#project-title').innerHTML = this.model.name;
       this.el.querySelector('#tech').innerHTML = this.model.tech;
       this.el.querySelector('#project-description').innerHTML = this.model.description;
-      this.el.querySelector('#project-link').href = this.model.uri;
+      if (this.model.uri) {
+        this.el.querySelector('#project-link').style.display = 'initial';
+        this.el.querySelector('#project-link').href = this.model.uri;
+      } else {
+        this.el.querySelector('#project-link').style.display = 'none';
+      }
       this.el.querySelector('#project-repo-link').href = this.model.repo;
     },
 
