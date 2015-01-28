@@ -171,7 +171,7 @@
       var xhr = new XMLHttpRequest();
 
       xhr.overrideMimeType('application/json');
-      xhr.open('GET', filepath, false);
+      xhr.open('GET', filepath, true);
 
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -221,6 +221,8 @@
   function SideBarView(elem) {
     this.el = elem;
 
+    this.template = doT.template(document.getElementById('sidebar-template').text);
+
     this.bindEvent('#close-btn', 'click', this.toggle);
     this.bindEvent('#next-btn', 'click', this.next);
     this.bindEvent('#prev-btn', 'click', this.prev);
@@ -247,18 +249,7 @@
     },
 
     render: function() {
-      this.el.querySelector('#project-title').innerHTML = this.model.name;
-      this.el.querySelector('#tech').innerHTML = this.model.tech;
-      this.el.querySelector('#project-description').innerHTML = this.model.description;
-      if (this.model.uri) {
-        this.el.querySelector('#project-link').style.display = 'initial';
-        this.el.querySelector('#project-repo-link').style.marginLeft = '';
-        this.el.querySelector('#project-link').href = this.model.uri;
-      } else {
-        this.el.querySelector('#project-link').style.display = 'none';
-        this.el.querySelector('#project-repo-link').style.marginLeft = '0px';
-      }
-      this.el.querySelector('#project-repo-link').href = this.model.repo;
+      this.el.querySelector('#project-metadata').innerHTML = this.template(this.model);
     },
 
     _onEscKeyPress: function(event) {
@@ -324,12 +315,17 @@
     }
   };
 
+
+  // Initialization stufffff
   var projectsService = new ProjectsService();
 
-  projectsService.getAll(function() {
-    new ImagePreloader();
+  projectsService.getAll(function(collection) {
     var sidebar = new SideBarView(document.getElementById('project-detail-view'));
 
+    var projectsTmpl = doT.template(document.getElementById('projects-template').text);
+    document.getElementById('main-list-wrapper').innerHTML = projectsTmpl({data: collection});
+
+    new ImagePreloader();
 
     // Normally this would go in another view and have a controller to
     // coordinate events, but I'm making a portfolio, not writing a framework.
@@ -345,6 +341,7 @@
       mediaBox[i].onclick = getProjectById;
     }
   });
+
 
 
   /**

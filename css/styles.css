@@ -50,6 +50,21 @@ a:focus, button:focus {
   outline: none !important;
 }
 
+.about-overlay {
+  position: absolute;
+  top: 40%;
+  left: 0%;
+  background: rgba(0,0,0,0.8);
+  color: #D3CEC7;
+  padding: 8px 8px 5px 8px;
+  width: 90%;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+  -ms-box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+}
+
 .link {
   -webkit-transition: color 0.2s ease;
   -moz-transition: color 0.2s ease;
@@ -88,6 +103,10 @@ a:focus, button:focus {
   margin-top: 100px;
 }
 
+#main-list-wrapper {
+  min-height: 700px;
+}
+
 #header-links hr {
   border-color: #575757;
 }
@@ -122,6 +141,7 @@ a:focus, button:focus {
 }
 
 .media-box a:hover {
+  cursor: pointer;
   color: #B3B0B6;
   -webkit-transition: all 0.15s ease-in-out;
 }
@@ -189,10 +209,9 @@ a:focus, button:focus {
 }
 
 .media-box {
-  min-height: 308px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #B0A8B8;
-  margin-bottom: 30px;
+  position: relative;
+  min-height: 200px;
+  margin-bottom: 50px;
 }
 
 .media-box img {
@@ -293,6 +312,10 @@ a:focus, button:focus {
 @media only screen and (min-width: 986px) and (max-width: 1280px) {
   h1 {
     font-size: 2.9vw;
+  }
+
+  h3 {
+    font-size: 1.8vw;
   }
 
   h5 {

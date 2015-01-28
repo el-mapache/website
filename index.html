@@ -9,20 +9,44 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   </head>
 
-  <script type="text/html">
-    <div class="col-md-6">
-      <div class="media-box light-shadow" data-index="0">
-        <img src="images/rats.jpg"/>
-        <div class="col-md-12">
-          <div class="row grid-spacing">
-            <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">RATings</h4>
-             <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-           </div>
-         </div>
-        <div class="clearfix"></div>
-        <p class="purple">Fear based San Francisco restaurant review website.</p>
-      </div>
+  <script type="text/html" id="projects-template">
+    <div class="row">
+      {{ for (var i = 0; i < it.data.length; i++) { }}
+        {{ var project = it.data[i]; }}
+        <div class="col-md-5 col-md-offset-1">
+          <div class="media-box" data-index="{{= i}}">
+            <div class="about-overlay">
+              <h3 class="col-xs-6 col-sm-6 col-md-6 sans alpha no-margin yellow">{{= project.name}}</h3>
+              <div class="clearfix"></div>
+              <p>{{= project.blurb}}</p>
+            </div>
+            <img src="images/{{= project.file}}"/>
+          </div>
+        </div>
+      {{ } }}
     </div>
+  </script>
+
+  <script type="text/html" id="sidebar-template">
+    <h2 class="sans black"><strong>{{= it.name}}</strong></h2>
+    <h5 class="sans">
+      <small class="upper">w/ </small><span>{{= it.tech}}</span>
+    </h5>
+    <p class="grid-spacing sans">
+      {{ if (it.available === "yes") { }}
+        <a href="{{= it.uri}}" target="_blank" class="black link">view project</a>
+        <a href="{{= it.repo}}" target="_blank" class="black col-md-offset-1 link">view code</a>
+      {{ } else { }}
+        <a href="{{= it.repo}}" target="_blank" class="black link">view code</a>
+      {{  } }}
+    </p>
+    <hr class="col-md-1">
+    <div class="row">
+      <p class="col-md-11">{{= it.description}}</p>
+    </div>
+
+    <hr class="col-md-1">
+    <div class="clearfix"></div>
   </script>
 
   <body class="yellow-bg">
@@ -46,99 +70,7 @@
         </header>
 
         <section id="main-list" class="col-md-10 black-bg">
-          <div id="main-list-wrapper" style="padding-top: 20px;">
-            <div class="row">
-
-              <div class="col-md-5 col-md-offset-1">
-                <div class="media-box light-shadow" data-index="0">
-                  <img src="images/rats.jpg"/>
-                  <div class="col-md-12">
-                    <div class="row spacing">
-                      <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">RATings</h4>
-                       <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-                     </div>
-                   </div>
-                  <div class="clearfix"></div>
-                  <p class="purple">San Francisco restaurants by health code violations.</p>
-                </div>
-              </div>
-
-              <div class="col-md-5">
-                <div class="media-box light-shadow" data-index="1">
-                  <img src="images/libre.jpg"/>
-                  <div class="col-md-12">
-                    <div class="row spacing">
-                      <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">Libre Ipsum</h4>
-                       <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-                     </div>
-                   </div>
-                  <div class="clearfix"></div>
-                  <p class="purple">Placeholder text from the archives of Project Gutenberg.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 col-md-offset-1">
-                <div class="media-box light-shadow" data-index="2">
-                  <img src="images/encoder.jpg"/>
-                  <div class="col-md-12">
-                    <div class="row spacing">
-                      <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">Encoder</h4>
-                       <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-                     </div>
-                   </div>
-                  <div class="clearfix"></div>
-                  <p class="purple">Async audio encoding with ffmpeg.</p>
-                </div>
-              </div>
-
-              <div class="col-md-5">
-                <div class="media-box light-shadow" data-index="3">
-                  <img src="images/transmission.jpg"/>
-                  <div class="col-md-12">
-                    <div class="row spacing">
-                      <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">Transmission</h4>
-                       <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-                     </div>
-                   </div>
-                  <div class="clearfix"></div>
-                  <p class="purple">Real-time file streaming between multiple peers.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 col-md-offset-1">
-                <div class="media-box light-shadow" data-index="4">
-                  <img src="images/scnow.jpg"/>
-                  <div class="col-md-12">
-                    <div class="row spacing">
-                      <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">Source-Now Recorder</h4>
-                       <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-                     </div>
-                   </div>
-                  <div class="clearfix"></div>
-                  <p class="purple">Record module for SC-Now web audio app.</p>
-                </div>
-              </div>
-
-              <div class="col-md-5">
-                <div class="media-box light-shadow" data-index="5">
-                  <img src="images/hero.jpg"/>
-                  <div class="col-md-12">
-                    <div class="row spacing">
-                      <h4 class="col-xs-6 col-sm-6 col-md-6 sans yellow alpha no-margin">HeroQuest</h4>
-                       <a class="col-xs-6 col-sm-6 col-md-3 col-md-offset-3 yellow omega align-right">about</a>
-                     </div>
-                   </div>
-                  <div class="clearfix"></div>
-                  <p class="purple">Milton Bradley classic in Javascript.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <div id="main-list-wrapper" style="padding-top: 20px;"></div>
         </section>
 
         <section id="project-detail-view" class="col-md-4 hide-animation">
@@ -155,29 +87,13 @@
               <span class="glyphicon glyphicon-chevron-right"></span>
             </button>
 
-            <div id="project-metadata">
-              <h2 class="sans black"><strong id="project-title"></strong></h2>
-              <h5 class="sans">
-                <small class="upper">w/ </small><span id="tech"></span>
-              </h5>
-              <p class="grid-spacing sans">
-                <a href="#" target="_blank" class="black link" id="project-link">view project</a>
-                <a href="#" target="_blank" class="black col-md-offset-1 link" id="project-repo-link">view code</a>
-              </p>
-              <hr class="col-md-1">
-              <div class="row">
-                <p id="project-description" class="col-md-11"></p>
-              </div>
-
-              <hr class="col-md-1">
-              <div class="clearfix"></div>
-            </div>
+            <div id="project-metadata"></div>
           </div>
         </section>
 
       </div>
-    </div>  
+    </div>
     <script src="js/dot.min.js"></script>
-    <script src="js/app.min.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
