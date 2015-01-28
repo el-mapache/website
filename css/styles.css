@@ -189,6 +189,7 @@ a:focus, button:focus {
 }
 
 .media-box {
+  min-height: 308px;
   padding-bottom: 5px;
   border-bottom: 1px solid #B0A8B8;
   margin-bottom: 30px;

@@ -15,7 +15,7 @@
       "tech": "Sinatra, jQuery",
       "blurb": "Placeholder text pulled from the archives of Project Gutenberg.",
       "description": "Libre Ipsum is a placeholder text generator that pulls its material from Project Gutenberg, an online repository of books in the public domain. It fetches and parses a daily RSS feed that contains the latest books added to Project Gutenberg. The requesting user chooses a book and a number of paragraphs to served; sections of the book are chosen at random. The backend is comprised of several pieces: a small Sinatra application to handle requests and process the books, a Redis database for simple IP based request throttling, and a text file which serves as a manifest of all available books. The front-end is quite basic and realized with jQuery.",
-      "uri": "",
+      "uri": "libre-ipsum.availableforfriendship.com",
       "repo": "https://github.com/el-mapache/libre-ipsum",
       "file": "libre.jpg",
       "available": "no"
