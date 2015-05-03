@@ -13,7 +13,7 @@
     {
       "name": "Libre Ipsum",
       "tech": "Sinatra, jQuery",
-      "blurb": "Placeholder text from the archives of Project Gutenberg.",
+      "blurb": "Placeholder text from Project Gutenberg.",
       "description": "Libre Ipsum is a placeholder text generator that pulls its material from Project Gutenberg, an online repository of books in the public domain. It fetches and parses a daily RSS feed that contains the latest books added to Project Gutenberg. The requesting user chooses a book and a number of paragraphs to served; sections of the book are chosen at random. The backend is comprised of several pieces: a small Sinatra application to handle requests and process the books, a Redis database for simple IP based request throttling, and a text file which serves as a manifest of all available books. The front-end is quite basic and realized with jQuery.",
       "uri": "http://libre-ipsum.availableforfriendship.com",
       "repo": "https://github.com/el-mapache/libre-ipsum",
@@ -23,7 +23,7 @@
     {
       "name": "Encoder",
       "tech": "Express, Angular",
-      "blurb": "ffmpeg back audio transcoder.",
+      "blurb": "ffmpeg backed audio transcoder.",
       "description": "Encoder is an audio transcoder that allows users to upload an audio file and convert it to one of several different formats. The file is processed using ffmpeg and an email is sent to the user with a link to the converted file. It uses Redis and a queueing library to manage file conversion and email jobs. This application was recently rewritten in Express from pure Node, with Angular providing the front-end functionality. This is the first web application I'd ever created, and it is quite special to me.",
       "uri": "",
       "repo": "https://github.com/el-mapache/encode",

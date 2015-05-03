@@ -12,10 +12,10 @@
     <div class="row">
       {{ for (var i = 0; i < it.data.length; i++) { }}
         {{ var project = it.data[i]; }}
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-6">
           <div class="media-box" data-index="{{= i}}">
             <div class="about-overlay">
-              <h3 class="col-xs-6 col-sm-6 col-md-6 sans alpha no-margin yellow">{{= project.name}}</h3>
+              <h3 class="col-xs-12 col-sm-12 col-md-12 sans alpha no-margin">{{= project.name}}</h3>
               <div class="clearfix"></div>
               <p>{{= project.blurb}}</p>
             </div>
@@ -48,32 +48,30 @@
     <div class="clearfix"></div>
   </script>
 
-  <body class="yellow-bg">
+  <body>
     <div class="container-fluid">
       <div class="row">
-        <header class="col-md-2">
-          <div id="header-wrapper">
-            <div class="row">
-              <h1 class="sans col-md-6"><strong>ADAM BIAGIANTI</strong></h1>
-              <h5 class="sans mute col-md-11">front-end web developer</h5>
-            </div>
+        <header class="col-xs-12 col-md-2">
+          <div class="header-title">
+            <h1 class="spacing sans"><strong>ADAM BIAGIANTI</strong></h1>
+          </div>
+          <h5 class="spacing sans mute">front-end web developer</h5>
 
-            <div id="header-links">
-              <p class="mute">on github:
-                <a class="mute" href="https://github.com/el-mapache">
-                  <strong>el-mapache</strong>
-                </a>
-              </p>
-            </div>
+          <div class="grid-spacing" id="header-links">
+            <a class="link" target="_blank" href="https://github.com/el-mapache">
+              <strong>code on github</strong>
+            </a>
           </div>
         </header>
+      </div>
 
-        <section id="main-list" class="col-md-10 black-bg">
-          <div id="main-list-wrapper" style="padding-top: 20px;"></div>
+      <div class="row">
+        <section id="main-list" class="col-md-10 col-md-offset-2 black-bg">
+          <div id="main-list-wrapper"></div>
         </section>
 
         <section id="project-detail-view" class="col-md-4 hide-animation">
-          <div id="project-metadata-wrapper" class="col-md-offset-1 mute">
+          <div class="spacing col-md-offset-1 mute">
             <button type="button" id="prev-btn" class="btn-nav">
               <span class="glyphicon glyphicon-chevron-left"></span>
             </button>

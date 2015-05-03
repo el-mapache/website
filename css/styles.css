@@ -9,7 +9,7 @@ body {
 }
 
 h1 {
-  line-height: 0.8;
+  line-height: 1.0;
 }
 
 h1 small,
@@ -37,8 +37,23 @@ img {
   width: 100%;
 }
 
+strong {
+  color: #333;
+}
+
+a {
+  text-decoration: underline;
+}
+
+header {
+  position: fixed !important;
+  height: 100%;
+  background: #fff;
+  z-index: 100;
+}
+
 header h1 {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 h5 {
@@ -54,15 +69,20 @@ a:focus, button:focus {
   position: absolute;
   top: 40%;
   left: 0%;
-  background: rgba(0,0,0,0.8);
-  color: #D3CEC7;
+  background: rgba(0,0,0,0.95);
+  color: #fff;
   padding: 8px 8px 5px 8px;
-  width: 90%;
+  width: 50%;
   z-index: 1;
   cursor: pointer;
   box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
   -ms-box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+  min-height: 50px;
+}
+
+.about-overlay p {
+  margin-top: 15px;
 }
 
 .link {
@@ -72,11 +92,15 @@ a:focus, button:focus {
 }
 
 .link:hover {
-  color: #FF500B;
+  color: rgb(242,73,73) !important;
 }
 
 .upper {
   text-transform: uppercase;
+}
+
+.header-title {
+  border-bottom: 4px solid rgb(242,73,73);
 }
 
 #main-list {
@@ -99,24 +123,12 @@ a:focus, button:focus {
   transition: all 0.05s ease-in-out;
 }
 
-#header-links, #main-list-wrapper {
-  margin-top: 100px;
+#main-list-wrapper {
+  margin-top: 50px;
 }
 
 #main-list-wrapper {
   min-height: 700px;
-}
-
-#header-links hr {
-  border-color: #575757;
-}
-
-#project-metadata-wrapper {
-  margin-top: 40px;
-}
-
-#project-metadata {
-  margin-top: 40px;
 }
 
 .hide-animation {
@@ -212,13 +224,21 @@ a:focus, button:focus {
   position: relative;
   min-height: 200px;
   margin-bottom: 50px;
+  -moz-box-shadow: 1px 8px 30px black;
+  -webkit-box-shadow: 1px 8px 30px black;
+  box-shadow: 1px 8px 30px black;
 }
 
 .media-box img {
   border-radius: 2px 2px;
   -moz-border-radius: 2px 2px;
   -webkit-border-radius: 2px 2px;
-  border-bottom: 4px solid #B0A8B8;
+
+  -moz-box-shadow: -8px 6px 25px rgb(0, 0, 0);
+  -webkit-box-shadow: -8px 6px 25px rgb(0, 0, 0);
+  box-shadow: -8px 6px 25px rgb(0, 0, 0);
+
+  border-bottom: 4px solid #aaa;
   cursor: pointer;
 
   -webkit-transition: all 0.2s ease;
@@ -227,7 +247,7 @@ a:focus, button:focus {
 }
 
 .media-box:hover img {
-  border-color: #FF500B;
+  border-color: rgb(242,73,73);
 }
 
 .light-shadow {
@@ -293,13 +313,8 @@ a:focus, button:focus {
 }
 
 @media only screen and (max-width: 1024px) {
-  #header-wrapper {
+  .header-title {
     position: relative;
-  }
-
-  #header-links {
-    margin-top: 20px;
-    margin-bottom: -40px;
   }
 }
 
@@ -309,39 +324,69 @@ a:focus, button:focus {
   }
 }
 
-@media only screen and (min-width: 986px) and (max-width: 1280px) {
-  h1 {
-    font-size: 2.9vw;
-  }
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+ h1 {
+   font-size: 2.5vw;
+ }
 
-  h3 {
-    font-size: 1.8vw;
-  }
 
-  h5 {
-    font-size: 1.2vw;
-  }
+ h5 {
+   font-size: 1.2vw;
+ }
 }
 
 @media only screen and (max-width: 990px) {
   h1 {
-    font-size: 10vh;
+    margin-bottom: 0px;
   }
 
   h5 {
-    font-size: 3.5vh;
+    margin: 0;
+  }
+
+  .grid-spacing {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  header {
+    position: relative !important;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    box-shadow: 10px 5px 20px #000000;
+    -moz-box-shadow: 10px 5px 20px #000000;
+    -webkit-box-shadow: 10px 5px 20px #000000;
+  }
+
+  header h1 {
+    margin-top: 5px;
+  }
+
+  .row .spacing {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #main-list {
+    padding-top: 5px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  h1 {
-    font-size: 8vh;
+  header {
+    padding: 0px !important;
   }
 
-  img {
-    min-height: inherit;
+  .media-box {
+    min-height: 191px;
   }
-  #project-metadata {
-    margin-top: 40px;
+
+  #main-list-wrapper {
+    margin-top: 20px;
+  }
+
+  .media-box {
+    margin-bottom: 20px;
   }
 }
