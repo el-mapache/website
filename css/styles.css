@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: Georgia;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 15px;
   height: 100%;
 }
@@ -22,9 +22,6 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-.sans {
-  font-family: "Monserrat", "Helvetica Neue", sans-serif;
 }
 
 hr {
@@ -67,18 +64,18 @@ a:focus, button:focus {
 
 .about-overlay {
   position: absolute;
-  top: 40%;
+  top: 0%;
   left: 0%;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0,0,0,0.5);
   color: #fff;
   padding: 8px 8px 5px 8px;
-  width: 50%;
+  width: 100%;
   z-index: 1;
   cursor: pointer;
   box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
   -ms-box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
-  min-height: 50px;
+  height: 100%;
 }
 
 .about-overlay p {
@@ -223,10 +220,10 @@ a:focus, button:focus {
 .media-box {
   position: relative;
   min-height: 200px;
-  margin-bottom: 50px;
-  -moz-box-shadow: 1px 8px 30px black;
-  -webkit-box-shadow: 1px 8px 30px black;
-  box-shadow: 1px 8px 30px black;
+  margin-bottom: 20px;
+  -moz-box-shadow: 1px 6px 15px black;
+  -webkit-box-shadow: 1px 6px 15px black;
+  box-shadow: 1px 6px 15px black;
 }
 
 .media-box img {
@@ -246,7 +243,8 @@ a:focus, button:focus {
   transition: all 0.2s ease;
 }
 
-.media-box:hover img {
+.media-box:hover img,
+.media-box.active img {
   border-color: rgb(242,73,73);
 }
 
@@ -294,7 +292,7 @@ a:focus, button:focus {
 }
 
 #close-btn span {
-  top: 2px;
+  top: 3px;
 }
 
 .btn-nav:hover {

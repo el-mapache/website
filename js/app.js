@@ -78,9 +78,11 @@
 
 
     function delayedFn(timeout, fn) {
-      var args = Array.prototype.slice.call(arguments, 2);
+      var args = [].slice.call(arguments, 2);
 
-      setTimeout(function() { fn.apply(null,args)}, timeout);
+      setTimeout(function() {
+        fn.apply(null,args)
+      }, timeout);
     }
 
 
@@ -252,18 +254,26 @@
       this.el.querySelector('#project-metadata').innerHTML = this.template(this.model);
     },
 
-    _onEscKeyPress: function(event) {
-      if (event.keyCode === 27) {
-        this.close();
+    _onKeyPress: function(event) {
+      switch (event.keyCode) {
+        case 27:
+          this.close();
+          break; 
+        case 39:
+          this.next();
+          break;
+        case 37:
+          this.prev();
+          break;
       }
     },
 
     bindShortcuts: function() {
-      document.addEventListener('keydown', this._onEscKeyPress.bind(this));
+      document.addEventListener('keydown', this._onKeyPress.bind(this));
     },
 
     unbindShortcuts: function() {
-      document.removeEventListener('keydown', this._onEscKeyPress)
+      document.removeEventListener('keydown', this._onKeyPress)
     },
 
     toggle: function() {
@@ -271,13 +281,15 @@
     },
 
     open: function() {
-      if (this.closed) {
-        this.el.className = this.el.className.replace(' hide-animation', '');
-        this.el.className = this.el.className += ' show-animation';
-
-        this.closed = false;
-        this.bindShortcuts();
+      if (!this.closed) {
+        return;
       }
+
+      this.el.className = this.el.className.replace(' hide-animation', '');
+      this.el.className = this.el.className += ' show-animation';
+
+      this.closed = false;
+      this.bindShortcuts();
     },
 
     close: function() {
@@ -309,9 +321,12 @@
       this.render();
     },
 
-    update: function(project, idx) {
+    update: function(project, index, fn) {
       this.model = project;
       this.render();
+      if (typeof fn === 'function') {
+        fn(index);
+      }
     }
   };
 
@@ -321,9 +336,11 @@
 
   projectsService.getAll(function(collection) {
     var sidebar = new SideBarView(document.getElementById('project-detail-view'));
-
     var projectsTmpl = doT.template(document.getElementById('projects-template').text);
+    var mediaBox;
+
     document.getElementById('main-list-wrapper').innerHTML = projectsTmpl({data: collection});
+    mediaBox = [].slice.call(document.querySelectorAll('.media-box'));
 
     new ImagePreloader();
 
@@ -331,15 +348,26 @@
     // coordinate events, but I'm making a portfolio, not writing a framework.
     function getProjectById(evt) {
       var index = +this.getAttribute('data-index');
-      sidebar.update(projectsService.get(index));
+
+      sidebar.update(projectsService.get(index), index, onSidebarUpdate);
       sidebar.open();
     }
 
-    var mediaBox = document.querySelectorAll('.media-box');
+    function onSidebarUpdate(currentIndex) {
+      mediaBox.forEach(function(box, i) {
+        if (/ active/.test(box.className)) {
+          box.className = box.className.replace(' active', '');
+        }
 
-    for (var i = 0; i < mediaBox.length; i++) {
-      mediaBox[i].onclick = getProjectById;
+        if (i === currentIndex) {
+          box.className = box.className + ' active';
+        }
+      });          
     }
+
+    mediaBox.forEach(function(box) {
+      box.onclick = getProjectById;
+    });
   });
 
 

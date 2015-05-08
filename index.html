@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="build/css/styles.min.css"/>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> 
   </head>
 
   <script type="text/html" id="projects-template">
@@ -14,11 +14,6 @@
         {{ var project = it.data[i]; }}
         <div class="col-md-6">
           <div class="media-box" data-index="{{= i}}">
-            <div class="about-overlay">
-              <h3 class="col-xs-12 col-sm-12 col-md-12 sans alpha no-margin">{{= project.name}}</h3>
-              <div class="clearfix"></div>
-              <p>{{= project.blurb}}</p>
-            </div>
             <img src="images/{{= project.file}}"/>
           </div>
         </div>
@@ -76,14 +71,14 @@
               <span class="glyphicon glyphicon-chevron-left"></span>
             </button>
 
-            <button type="button" id="close-btn" class="btn-nav">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
 
             <button type="button" id="next-btn" class="btn-nav">
               <span class="glyphicon glyphicon-chevron-right"></span>
             </button>
 
+            <button type="button" id="close-btn" class="btn-nav pull-right">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
             <div id="project-metadata"></div>
           </div>
         </section>
