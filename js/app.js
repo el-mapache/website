@@ -231,6 +231,8 @@
 
 
     this.closed = true;
+    this.onClose = document.createEvent('Event');
+    this.onClose.initEvent('ON_SIDEBAR_CLOSE', true, true);
   }
 
   SideBarView.prototype = {
@@ -301,6 +303,7 @@
 
       this.closed = true;
       this.unbindShortcuts();
+      document.dispatchEvent(this.onClose);
     },
 
     next: function() {
@@ -341,6 +344,12 @@
 
     document.getElementById('main-list-wrapper').innerHTML = projectsTmpl({data: collection});
     mediaBox = [].slice.call(document.querySelectorAll('.media-box'));
+
+    document.addEventListener('ON_SIDEBAR_CLOSE', function (e) {
+      mediaBox.forEach(function(box) {
+        box.className = box.className.replace(' active', '');
+      });
+     }, false);
 
     new ImagePreloader();
 
