@@ -231,8 +231,12 @@
 
 
     this.closed = true;
+
     this.onClose = document.createEvent('Event');
     this.onClose.initEvent('ON_SIDEBAR_CLOSE', true, true);
+
+    this.onNavigate = document.createEvent('Event');
+    this.onNavigate.initEvent('ON_NAVIGATE', true, true);
   }
 
   SideBarView.prototype = {
@@ -311,8 +315,8 @@
         return;
       }
 
-      this.model = projectsService.get(this.model.id + 1);
-      this.render();
+      var nextIdx = this.model.id + 1;
+      this.update(projectsService.get(nextIdx), nextIdx);
     },
 
     prev: function() {
@@ -320,16 +324,16 @@
         return;
       }
 
-      this.model = projectsService.get(this.model.id - 1);
-      this.render();
+      var prevIdx = this.model.id - 1;
+      this.update(projectsService.get(prevIdx), prevIdx);
     },
 
-    update: function(project, index, fn) {
+    update: function(project, index) {
       this.model = project;
       this.render();
-      if (typeof fn === 'function') {
-        fn(index);
-      }
+
+      this.onNavigate.data = index;
+      document.dispatchEvent(this.onNavigate);
     }
   };
 
@@ -351,6 +355,8 @@
       });
      }, false);
 
+     document.addEventListener('ON_NAVIGATE', onSidebarUpdate);
+
     new ImagePreloader();
 
     // Normally this would go in another view and have a controller to
@@ -358,11 +364,13 @@
     function getProjectById(evt) {
       var index = +this.getAttribute('data-index');
 
-      sidebar.update(projectsService.get(index), index, onSidebarUpdate);
+      sidebar.update(projectsService.get(index), index);
       sidebar.open();
     }
 
-    function onSidebarUpdate(currentIndex) {
+    function onSidebarUpdate(event) {
+      var currentIndex = event.data;
+
       mediaBox.forEach(function(box, i) {
         if (/ active/.test(box.className)) {
           box.className = box.className.replace(' active', '');
