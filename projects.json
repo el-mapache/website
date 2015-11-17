@@ -45,7 +45,7 @@
       "tech": "Angular",
       "blurb": "Record module for Source-Now web audio app.",
       "description": "Recorder module written for Source-Elements' web only audio communication tool. Based on Matt Diamond's excellent RecorderJS library, this module makes a number of modifications to allow audio files of any duration to be recorded and saved without consuming all of the user's system resources. Originally written as a stand-alone demo, I adapted it into an Angular application for use with Source-Elements' existing front-end infrastructure.",
-      "uri": "https://source-now.com",
+      "uri": "https://now.source-elements.com/#!/",
       "repo": "https://github.com/el-mapache/cassette",
       "file": "scnow.jpg",
       "available": "yes"
