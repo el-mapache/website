@@ -218,22 +218,16 @@ a:focus, button:focus {
 }
 
 .media-box {
+  background: rgba(0,0,0,0.1);
   position: relative;
-  min-height: 200px;
+  min-height: 266px;
   margin-bottom: 20px;
-  -moz-box-shadow: 1px 6px 15px black;
-  -webkit-box-shadow: 1px 6px 15px black;
-  box-shadow: 1px 6px 15px black;
 }
 
 .media-box img {
   border-radius: 2px 2px;
   -moz-border-radius: 2px 2px;
   -webkit-border-radius: 2px 2px;
-
-  -moz-box-shadow: -8px 6px 25px rgb(0, 0, 0);
-  -webkit-box-shadow: -8px 6px 25px rgb(0, 0, 0);
-  box-shadow: -8px 6px 25px rgb(0, 0, 0);
 
   border-bottom: 4px solid #aaa;
   cursor: pointer;

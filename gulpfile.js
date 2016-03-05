@@ -24,4 +24,3 @@ gulp.task('minify', function() {
 });
 
 gulp.task('default',['watch', 'css', 'minify'], function() {});
-

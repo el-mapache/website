@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="build/css/styles.min.css"/>
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> 
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   </head>
 
   <script type="text/html" id="projects-template">
@@ -27,7 +27,7 @@
       <small class="upper">w/ </small><span>{{= it.tech}}</span>
     </h5>
     <p class="grid-spacing sans">
-      {{ if (it.available === "yes") { }}
+      {{ if (it.available) { }}
         <a href="{{= it.uri}}" target="_blank" class="black link">view project</a>
         <a href="{{= it.repo}}" target="_blank" class="black col-md-offset-1 link">view code</a>
       {{ } else { }}

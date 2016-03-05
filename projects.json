@@ -8,7 +8,7 @@
       "uri": "http://ratings.availableforfriendship.com",
       "repo": "https://github.com/el-mapache/caveat",
       "file": "rats.jpg",
-      "available": "yes"
+      "available": true
     },
     {
       "name": "Libre Ipsum",
@@ -18,7 +18,7 @@
       "uri": "http://libre-ipsum.availableforfriendship.com",
       "repo": "https://github.com/el-mapache/libre-ipsum",
       "file": "libre.jpg",
-      "available": "yes"
+      "available": true
     },
     {
       "name": "Encoder",
@@ -28,7 +28,7 @@
       "uri": "",
       "repo": "https://github.com/el-mapache/encode",
       "file": "encoder.jpg",
-      "available": "no"
+      "available": false
     },
     {
       "name": "Transmission",
@@ -38,7 +38,7 @@
       "uri": "",
       "repo": "https://github.com/el-mapache/transmission",
       "file": "transmission.jpg",
-      "available": "no"
+      "available": false
     },
     {
       "name": "SC-Now Recorder",
@@ -48,7 +48,7 @@
       "uri": "https://now.source-elements.com/#!/",
       "repo": "https://github.com/el-mapache/cassette",
       "file": "scnow.jpg",
-      "available": "yes"
+      "available": true
     },
     {
       "name": "Hero Quest",
@@ -58,7 +58,17 @@
       "uri": "",
       "repo": "https://github.com/el-mapache/hero_quest",
       "file": "hero.jpg",
-      "available": "no"
+      "available": false
+    },
+    {
+      "name": "Minesweeper",
+      "tech": "React, Webpack",
+      "blurb": "Minesweeper just like your Windows 3.1 used to make.",
+      "description": "Javascript implementation of minesweeper, written to further my React knowledge. A handful of components, a simple store to hold the state of the game, and an implementation of the floodfill algorithm are the only pieces needed to recreate the game. \n\n Playing this game is as annoyingly difficult as I remember it being!",
+      "uri": "https://el-mapache.github.io/minesweeper",
+      "repo": "https://github.com/el-mapache/minesweeper",
+      "file": "minesweeper.png",
+      "available": true
     }
   ]
 }
