@@ -2,7 +2,7 @@
   "projects": [
     {
       "name": "RATings",
-      "tech": "Ruby on Rails, Angular",
+      "tech": "Ruby on Rails, Angular, postgreSQL",
       "blurb": "San Francisco restaurant cleanliness scores.",
       "description": "RATings (pronounced RAT-ings) uses data from the city of San Francisco's health department to display an interactive map of restaurants in the city and their food safety inspection scores. Businesses are given a score of zero to four rats depending on the severity of their violations.  Historical scores and violations are provided as well as the status of the violations. The backend uses Rails to expose a simple API that feeds an Angular js front-end. This project was undertaken as an exercise in learning Angular js and to explore public data in a novel way.",
       "uri": "http://ratings.availableforfriendship.com",
@@ -12,7 +12,7 @@
     },
     {
       "name": "Libre Ipsum",
-      "tech": "Sinatra, jQuery",
+      "tech": "Sinatra, Redis, jQuery",
       "blurb": "Placeholder text from Project Gutenberg.",
       "description": "Libre Ipsum is a placeholder text generator that pulls material from Project Gutenberg, an online repository of books in the public domain. It fetches and parses a daily RSS feed that contains the latest books added to Project Gutenberg. The user chooses a book and a number of paragraphs; text from the book is displayed randomly. The backend is comprised of several pieces: a small Sinatra application to handle requests and process the books, a Redis database for simple IP based request throttling, and a text file which serves as a manifest of all available books. The front-end is written in jQuery.",
       "uri": "http://libre-ipsum.availableforfriendship.com",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Encoder",
-      "tech": "Express, Angular",
+      "tech": "Express, Redis, Angular",
       "blurb": "ffmpeg backed audio transcoder.",
       "description": "The first web app I created, Encoder is an audio transcoder that allows users to upload an audio file and convert it to one of several different formats. The file is processed using ffmpeg and an email is sent to the user with a link to the converted file. It uses Redis and a queueing library to manage file conversion and email jobs. This application was recently rewritten in Express from pure Node, with Angular providing the front-end functionality.",
       "uri": "",
@@ -34,7 +34,7 @@
       "name": "Transmission",
       "tech": "Express, Backbone",
       "blurb": "Real-time file streaming between multiple peers.",
-      "description": "Using Node's binary websocket library BinaryJS, this application allows for real-time file streaming from one connected client to each of the other connected clients. It chunks a file to the back-end server, and pipes the chunks to each client connection. Files are not stored on the server, they are assembled client-side and saved to the user's computer. The front-end is a small backbone application that utilizes the File API to recreate files from the original chunks of data. When I discovered BinaryJS, the idea for this project came to me almost immediately.",
+      "description": "Using Node's binary websocket library BinaryJS, this application allows for real-time file streaming from one connected client to each of the other connected clients. It chunks a file to the back-end server, and pipes the chunks to each client connection. Files are not stored on the server, they are assembled client-side and saved to the user's computer. The front-end is a small backbone application that utilizes the File API to recreate files from the original chunks of data.",
       "uri": "",
       "repo": "https://github.com/el-mapache/transmission",
       "file": "transmission.jpg",
@@ -44,7 +44,7 @@
       "name": "SC-Now Recorder",
       "tech": "Angular",
       "blurb": "Record module for Source-Now web audio app.",
-      "description": "Recorder module written for Source-Elements' web only audio communication tool. Based on Matt Diamond's excellent RecorderJS library, this module makes a number of modifications to allow audio files of any duration to be recorded and saved without consuming all of the user's system resources. Originally written as a stand-alone demo, I adapted it into an Angular application for use with Source-Elements' existing front-end infrastructure.",
+      "description": "Recorder module written for Source-Elements' web only audio collaboration tool. Based on Matt Diamond's excellent RecorderJS library, this module makes a number of modifications. Rather than recording storing all audio in a single buffer, it writes many small files (using Chrome's FileSystem API) and then assembles them into a single WAV file once the recording is complete. This allows audio files of any duration to be recorded and saved without consuming all of the user's system's resources. Originally written as a stand-alone demo, I adapted it into an Angular application for use with Source-Elements' existing front-end infrastructure.",
       "uri": "https://now.source-elements.com/#!/",
       "repo": "https://github.com/el-mapache/cassette",
       "file": "scnow.jpg",
@@ -64,7 +64,7 @@
       "name": "Minesweeper",
       "tech": "React, Webpack",
       "blurb": "Minesweeper just like your Windows 3.1 used to make.",
-      "description": "Javascript implementation of minesweeper, written to further my React knowledge. A handful of components, a simple store to hold the state of the game, and an implementation of the floodfill algorithm are the only pieces needed to recreate the game. \n\n Playing this game is as annoyingly difficult as I remember it being!",
+      "description": "I wrote this Javascript implementation of minesweeper to get more comfortable using React. A handful of components, a simple store to hold the state of the game, and an implementation of the floodfill algorithm are the only pieces needed to recreate the game. \n\n In case you were wondering, this game is still super annoying to play.",
       "uri": "https://el-mapache.github.io/minesweeper",
       "repo": "https://github.com/el-mapache/minesweeper",
       "file": "minesweeper.png",

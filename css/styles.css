@@ -220,7 +220,7 @@ a:focus, button:focus {
 .media-box {
   background: rgba(0,0,0,0.1);
   position: relative;
-  min-height: 266px;
+  min-height: 196px;
   margin-bottom: 20px;
 }
 
