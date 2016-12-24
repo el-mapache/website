@@ -2,56 +2,71 @@
   function ImagePreloader() {
     var DELAY_TIME = 350,
         DELAY = 100,
-        FADE_IN_TIME = 250;
+        FADE_IN_TIME = 200;
 
 
-    // Array of booleans keeps track of whether an image has loaded or not.
-    var isLoaded = [];
+    var pendingImages = (function() {
+      var list = [];
+
+      return {
+        isLoaded: function() {
+          return list.every(function(el) {
+            return el === true;
+          });
+        },
+        set: function(index, value) {
+          list[index] = value;
+        },
+
+        get: function(index) {
+          return list[index];
+        }
+      }
+    })();
 
     var icon;
     var timer;
     var images;
 
+    function isImage(node) {
+      return node.tagName.toLowerCase() === 'img';
+    }
 
-    // Find each image node, wrap set its styles and wrap it.
+    // @returns {Array} Array of a single HTMLElement
+    function prepareImage(imgNode, loadedIndex) {
+      setImageStyle(imgNode);
+      wrap(imgNode);
+      pendingImages.set(loadedIndex, false);
+
+      return [imgNode];
+    }
+
+    // Find each image node, set its styles and wrap it.
     function getImages(selector) {
-      var selector = document.querySelector(selector);
+      var node = document.querySelector(selector);
       var imageNodes;
-      var length;
 
       // Either a selector wasnt passed in, or the node doesnt exist.
-      if (!selector) return;
+      if (!node) return;
 
-      if (selector.tagName.toLowerCase() === 'img') {
-          // Hide the image.
-          setImageStyle(selector);
-          wrap(selector);
-
-          // Wrap the single image in an array.
-          imageNodes = [selector];
-
-          return imageNodes;
+      // Preloader was initialized with a single iamge, not a node containing
+      // inmages as children
+      if (isImage(node)) {
+        // Hide the image and set loading state
+        return prepareImage(node, 0);
       }
 
-      imageNodes = selector.getElementsByTagName('img'),
-      length = imageNodes.length;
+      imageNodes = node.getElementsByTagName('img');
 
-      // No images, return.
-      if (length < 1) return;
-
-      for (var i = 0; i < length; i++) {
-        setImageStyle(imageNodes[i]);
-        wrap(imageNodes[i]);
-        isLoaded[i] = false;
-      }
-
-      return imageNodes;
+      return [].reduce.call(imageNodes, function(accum, node, index) {
+        return accum.concat(prepareImage(node, index));
+      }, []);
     }
 
 
     function setImageStyle(img) {
-      img.style.visibility = "hidden";
-      img.className = img.className + " hide-image";
+      img.style.visibility = 'hidden';
+      img.className = img.className + ' hide-image';
     }
 
 
@@ -66,100 +81,78 @@
     }
 
     // Preload the preload icon;
-    function createPreloadIcon() {
+    function createPreloadIcon(callback) {
       var icon = document.createElement('img');
 
-      icon.src = "../images/preloader.gif";
-      icon.style.display = "none";
+      icon.onload = callback;
+      icon.style.display = 'none';
+      icon.src = '../images/preloader.gif';
       document.body.appendChild(icon);
-
-      return icon;
     }
-
 
     function delayedFn(timeout, fn) {
       var args = [].slice.call(arguments, 2);
 
       setTimeout(function() {
-        fn.apply(null,args)
+        fn.apply(null, args)
       }, timeout);
     }
 
+    function removeClass(node, className) {
+      node.className = node.className.replace(className, '');
+    }
 
     function removePreloadClass(imageNode) {
-      imageNode.parentNode.className = imageNode.parentNode.className.replace("preloader", "");
+      removeClass(imageNode.parentNode, 'preloader');
+      removeClass(imageNode, 'hide-image');
+    }
+
+    function showImage(image, delayTime) {
+      image.style.visibility = 'visible';
+
+      delayedFn(delayTime, function() {
+        image.className = image.className + ' show-image';
+        delayedFn(FADE_IN_TIME, removePreloadClass, image);
+      });
     }
 
 
     function startPreloader(images) {
       var timer;
-      var images = Array.prototype.slice.call(images);
+      var images = [].slice.call(images);
 
       var localDelay = DELAY_TIME;
 
       function isImagePreloaded() {
-        var ii = 0;
-        var length = images.length;
-
         // All images have been loaded.
-        if (length === 0) {
+        if (pendingImages.isLoaded()) {
           clearInterval(timer);
           return;
         }
 
-        for (ii; ii < length; ii++) {
+        images.forEach(function(image, index) {
+          if (typeof image !== 'undefined' && image.complete === true && !pendingImages.get(index)) {
+            pendingImages.set(index, true);
+            localDelay += DELAY;
 
-          if (typeof images[ii] !== 'undefined' && images[ii].complete === true) {
-
-            if (!isLoaded[ii]) {
-              isLoaded[ii] = !!isLoaded;
-              isLoaded.splice(ii,1);
-              localDelay += DELAY;
-            }
-
-            function showImage(image, delayTime) {
-              image.style.visibility = "visible";
-
-              delayedFn(delayTime, function() {
-                image.className = image.className + " show-image";
-                delayedFn(FADE_IN_TIME, removePreloadClass, image);
-              });
-            }
-
-            showImage(images[ii], localDelay);
-
-            images.splice(ii,1);
+            showImage(image, localDelay);
           }
-        }
+        });
       }
 
       timer = setInterval(function() {
         isImagePreloaded();
-      },300);
+      }, 60);
     }
-
-
 
     /**
       * Initialization
     **/
-
-    imgs = getImages(imageSelector);
-    icon = createPreloadIcon();
-
-    function loaded() {
-      if(icon.complete === true) {
-        clearInterval(timer);
-        document.body.removeChild(icon);
-        startPreloader(imgs);
-      }
-    }
-
-    timer = setInterval(function() {
-      loaded();
-    }, 50);
+    icon = createPreloadIcon(function() {
+      document.body.removeChild(this);
+      startPreloader(getImages(imageSelector));
+    });
   }
-
 
 
   /**
@@ -264,7 +257,7 @@
       switch (event.keyCode) {
         case 27:
           this.close();
-          break; 
+          break;
         case 39:
           this.next();
           break;
@@ -379,7 +372,7 @@
         if (i === currentIndex) {
           box.className = box.className + ' active';
         }
-      });          
+      });
     }
 
     mediaBox.forEach(function(box) {

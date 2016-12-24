@@ -18,9 +18,11 @@ gulp.task('css', function() {
 
 gulp.task('minify', function() {
   gulp.src('js/*.js')
-      .pipe(uglify())
+      .pipe(uglify()).on('error', function(e) { console.log(e); })
       .pipe(concat('app.min.js'))
       .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('default',['watch', 'css', 'minify'], function() {});
+gulp.task('default',['watch', 'css', 'minify'], function(e) {
+  console.log(e)
+});
