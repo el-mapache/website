@@ -222,7 +222,6 @@
     this.bindEvent('#next-btn', 'click', this.next);
     this.bindEvent('#prev-btn', 'click', this.prev);
 
-
     this.closed = true;
 
     this.onClose = document.createEvent('Event');
@@ -309,7 +308,9 @@
       }
 
       var nextIdx = this.model.id + 1;
-      this.update(projectsService.get(nextIdx), nextIdx);
+      var project = projectsService.get(nextIdx);
+
+      this.update(project, project.id);
     },
 
     prev: function() {
@@ -318,7 +319,9 @@
       }
 
       var prevIdx = this.model.id - 1;
-      this.update(projectsService.get(prevIdx), prevIdx);
+      var project = projectsService.get(prevIdx);
+
+      this.update(project, project.id);
     },
 
     update: function(project, index) {
