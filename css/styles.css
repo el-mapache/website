@@ -240,6 +240,7 @@ a:focus, button:focus {
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  visibility: hidden;
 }
 
 .media-box.active img {
