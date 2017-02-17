@@ -261,6 +261,8 @@
 
     this.onNavigate = document.createEvent('Event');
     this.onNavigate.initEvent('ON_NAVIGATE', true, true);
+
+    this._onKeyPress = this._onKeyPress.bind(this);
   }
 
   SideBarView.prototype = {
@@ -316,7 +318,7 @@
     },
 
     bindShortcuts: function() {
-      document.addEventListener('keydown', this._onKeyPress.bind(this));
+      document.addEventListener('keydown', this._onKeyPress);
     },
 
     unbindShortcuts: function() {
@@ -348,6 +350,7 @@
 
       this.closed = true;
       this.unbindShortcuts();
+      this.model = null;
       document.dispatchEvent(this.onClose);
     },
 
@@ -357,7 +360,6 @@
       }
 
       var nextIdx = this.model.id + 1;
-
       this.update(projectsService.get(nextIdx));
     },
 
@@ -367,7 +369,6 @@
       }
 
       var prevIdx = this.model.id - 1;
-
       this.update(projectsService.get(prevIdx));
     },
 
