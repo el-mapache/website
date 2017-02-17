@@ -115,15 +115,23 @@ a:focus, button:focus {
   top: 0;
   right: 0;
   background: white;
-  z-index: 0;
   overflow-y: scroll;
   display: block;
   box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -moz-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -webkit-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
-  -webkit-transition: all 0.05s ease-in-out;
+  /*-webkit-transition: all 0.05s ease-in-out;
   -moz-transition: all 0.05s ease-in-out;
-  transition: all 0.05s ease-in-out;
+  transition: all 0.05s ease-in-out;*/
+}
+
+#project-metadata {
+  opacity: 100;
+  transition: opacity 0.1s linear;
+}
+
+#project-detail-view.hide-animation #project-metadata {
+  opacity: 0;
 }
 
 #main-list-wrapper {
@@ -133,13 +141,101 @@ a:focus, button:focus {
 
 }
 
+@keyframes animateHide {
+  0% {
+    opacity: 100;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+@-webkit-keyframes animateHide {
+  0% {
+    opacity: 100;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes animateShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+@-moz-keyframes animateHide {
+  0% {
+    opacity: 100;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes animateShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+@-ms-keyframes animateHide {
+  0% {
+    opacity: 100;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes animateShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
 .hide-animation {
-  opacity: 0;
-  visibility: hidden;
+  -webkit-animation: animateHide .2s ease;
+  -moz-animation: animateHide .2s ease;
+  -ms-animation: animateHide .2s ease;
+  animation: animateHide .2s ease;
 }
 
 .show-animation {
-  opacity: 1;
+  -webkit-animation: animateShow .2s ease-out;
+  -moz-animation: animateShow .2s ease-out;
+  -ms-animation: animateShow .2s ease-out;
+  animation: animateShow .2s ease-out;
+}
+
+.click-overlay {
   z-index: 10000 !important;
 }
 

@@ -4,12 +4,13 @@
   <title>Adam Biagianti - Front-End Web Developer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="build/css/styles.min.css"/>
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   </head>
 
   <script type="text/html" id="projects-template">
-    <div class="row">
+    <div>
       {{ for (var i = 0; i < it.data.length; i++) { }}
         {{ var project = it.data[i]; }}
         <div class="col-md-4">
@@ -65,7 +66,7 @@
       </div>
 
       <div class="row">
-        <section id="project-detail-view" class="col-md-4 hide-animation">
+        <section id="project-detail-view" class="col-md-4">
           <div class="spacing col-md-offset-1 mute">
             <button type="button" id="prev-btn" class="btn-nav">
               <span class="glyphicon glyphicon-chevron-left"></span>

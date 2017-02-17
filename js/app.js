@@ -154,6 +154,35 @@
     });
   }
 
+  function whichAnimationEvents(element) {
+    var t;
+    var animations = {
+      'animation':{
+        start: 'animationstart',
+        end: 'animationend'
+      },
+      'OAnimation': {
+        start: 'oAnimationStart',
+        end: 'oAnimationEnd'
+      },
+      'MozAnimation': {
+        start: 'animationstart',
+        end: 'animationend',
+      },
+      'WebkitTransition': {
+        start: 'webkitAnimationEnd',
+        end: 'webkitAnimationEnd'
+      }
+    }
+
+    for(t in animations){
+      if(element.style[t] !== undefined ){
+        return animations[t];
+      }
+    }
+
+    return animations.animation;
+ }
 
   /**
     * Service object loads and stores json file of project information.
@@ -197,17 +226,19 @@
       },
 
       get: function(idx) {
+        var nextIndex;
+
         if (!collection) return;
 
         if (idx > collection.length - 1) {
-          return collection[0];
+          nextIndex = 0;
+          return [collection[nextIndex], nextIndex];
+        } else if (idx < 0) {
+          nextIndex = collection.length - 1;
+          return [collection[nextIndex], nextIndex];
         }
 
-        if (idx < 0) {
-          return collection[collection.length - 1];
-        }
-
-        return collection[idx];
+        return [collection[idx], idx];
       }
     };
   }
@@ -221,6 +252,7 @@
     this.bindEvent('#close-btn', 'click', this.toggle);
     this.bindEvent('#next-btn', 'click', this.next);
     this.bindEvent('#prev-btn', 'click', this.prev);
+    this.bindAnimationEvents();
 
     this.closed = true;
 
@@ -237,7 +269,8 @@
 
       var self = this;
 
-      var elem = this.el.querySelector(selector);
+      var elem = selector instanceof HTMLElement ? selector :
+        this.el.querySelector(selector);
 
       if (typeof elem === 'undefined') {
         return;
@@ -245,6 +278,22 @@
 
       elem.addEventListener(evnt, function(evt) {
         fn.call(self, evt);
+      });
+    },
+
+    bindAnimationEvents: function() {
+      var animations = whichAnimationEvents(this.el);
+
+      this.bindEvent(this.el, animations.start, function(event) {
+        if (event.animationName === 'animateShow') {
+          event.target.className = event.target.className + ' click-overlay';
+        }
+      });
+
+      this.bindEvent(this.el, animations.end, function(event) {
+        if (event.animationName === 'animateHide') {
+          event.target.className = event.target.className.replace(/ click-overlay/, '');
+        }
       });
     },
 
@@ -308,9 +357,8 @@
       }
 
       var nextIdx = this.model.id + 1;
-      var project = projectsService.get(nextIdx);
 
-      this.update(project, project.id);
+      this.update(projectsService.get(nextIdx));
     },
 
     prev: function() {
@@ -319,13 +367,14 @@
       }
 
       var prevIdx = this.model.id - 1;
-      var project = projectsService.get(prevIdx);
 
-      this.update(project, project.id);
+      this.update(projectsService.get(prevIdx));
     },
 
-    update: function(project, index) {
-      this.model = project;
+    update: function(project) {
+      this.model = project[0];
+      var index = project[1];
+
       this.render();
 
       this.onNavigate.data = index;
@@ -444,6 +493,6 @@
     for (var i = 0; i < handlers.length; i++) {
       handlers[i]();
     }
-  }
+  };
 
 })(window, '#main-list');
