@@ -334,7 +334,7 @@
         return;
       }
 
-      this.el.className = this.el.className.replace(' hide-animation', '');
+      this.el.className = this.el.className.replace(/\s(hide-animation|hide)/  , '');
       this.el.className = this.el.className += ' show-animation';
 
       this.closed = false;

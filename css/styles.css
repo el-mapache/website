@@ -122,8 +122,8 @@ a:focus, button:focus {
   -webkit-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
 }
 
-#project-detail-view.hide-animation, #project-detail-view.hide-animation #project-metadata {
-  opacity: 0;
+#project-detail-view.hide-animation {
+  opacity: 0 !important;
 }
 
 #main-list-wrapper {
@@ -134,6 +134,9 @@ a:focus, button:focus {
 }
 
 @keyframes animateHide {
+  0% {
+    opacity: 100
+  }
   100% {
     opacity: 0;
   }
@@ -208,7 +211,9 @@ a:focus, button:focus {
     opacity: 100;
   }
 }
-
+.hide {
+  opacity: 0 !important;
+}
 .hide-animation {
   -webkit-animation: animateHide .2s ease;
   -moz-animation: animateHide .2s ease;
