@@ -120,17 +120,9 @@ a:focus, button:focus {
   box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -moz-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
   -webkit-box-shadow: 0px 0px 15px rgba(10,10,10,0.5);
-  /*-webkit-transition: all 0.05s ease-in-out;
-  -moz-transition: all 0.05s ease-in-out;
-  transition: all 0.05s ease-in-out;*/
 }
 
-#project-metadata {
-  opacity: 100;
-  transition: opacity 0.1s linear;
-}
-
-#project-detail-view.hide-animation #project-metadata {
+#project-detail-view.hide-animation, #project-detail-view.hide-animation #project-metadata {
   opacity: 0;
 }
 
@@ -142,10 +134,6 @@ a:focus, button:focus {
 }
 
 @keyframes animateHide {
-  0% {
-    opacity: 100;
-  }
-
   100% {
     opacity: 0;
   }
